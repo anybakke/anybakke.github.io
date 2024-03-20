@@ -1,4 +1,8 @@
-!function(name,definition){if(typeof module!='undefined'&&module.exports)module.exports=definition()
+/*!
+ * Bowser - a browser detector
+ * https://github.com/ded/bowser
+ * MIT License | (c) Dustin Diaz 2015
+ */!function(name,definition){if(typeof module!='undefined'&&module.exports)module.exports=definition()
 else if(typeof define=='function'&&define.amd)define(name,definition)
 else this[name]=definition()}('bowser',function(){var t=true
 function detect(ua){function getFirstMatch(regex){var match=ua.match(regex);return(match&&match.length>1&&match[1])||'';}
@@ -71,7 +75,4 @@ if(ua){_bowser=detect(ua);}
 var version=""+_bowser.version;for(var browser in minVersions){if(minVersions.hasOwnProperty(browser)){if(_bowser[browser]){return compareVersions([version,minVersions[browser]])<0;}}}
 return strictMode;}
 function check(minVersions,strictMode,ua){return!isUnsupportedBrowser(minVersions,strictMode,ua);}
-bowser.isUnsupportedBrowser=isUnsupportedBrowser;bowser.compareVersions=compareVersions;bowser.check=check;bowser._detect=detect;return bowser});(function($){UABBTrigger={triggerHook:function(hook,args)
-{$('body').trigger('uabb-trigger.'+hook,args);},addHook:function(hook,callback)
-{$('body').on('uabb-trigger.'+hook,callback);},removeHook:function(hook,callback)
-{$('body').off('uabb-trigger.'+hook,callback);},};})(jQuery);jQuery(document).ready(function($){var uabb_browser=bowser.name,uabb_browser_v=bowser.version,uabb_browser_class=uabb_browser.replace(/\s+/g,'-').toLowerCase(),uabb_browser_v_class=uabb_browser_class+parseInt(uabb_browser_v);$('html').addClass(uabb_browser_class).addClass(uabb_browser_v_class);});
+bowser.isUnsupportedBrowser=isUnsupportedBrowser;bowser.compareVersions=compareVersions;bowser.check=check;bowser._detect=detect;return bowser});(function($){UABBTrigger={triggerHook:function(hook,args){$('body').trigger('uabb-trigger.'+hook,args);},addHook:function(hook,callback){$('body').on('uabb-trigger.'+hook,callback);},removeHook:function(hook,callback){$('body').off('uabb-trigger.'+hook,callback);},};})(jQuery);jQuery(document).ready(function($){var uabb_browser=bowser.name,uabb_browser_v=bowser.version,uabb_browser_class=uabb_browser.replace(/\s+/g,'-').toLowerCase(),uabb_browser_v_class=uabb_browser_class+parseInt(uabb_browser_v);$('html').addClass(uabb_browser_class).addClass(uabb_browser_v_class);});
